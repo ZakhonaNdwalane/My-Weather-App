@@ -35,15 +35,19 @@
           <div>
             <h1 class="weather-app-city" id="city"></h1>
             <p class="weather-app-details">
-              Tuesday 14:00, Scattered clouds
+              <span id="time"></span>, <span id="description"></span>
               <br />
-              Humidity: <strong>60%</strong>, Wind: <strong>6km/h</strong>
+              Humidity: <strong id ="humidity"></strong>, Wind: <strong id="windspeed"></strong>
             </p>
           </div>
           <div class="weather-app-temperature-container">
-            <span class="weather-app-icon">☀️</span>
-            <div>
-              <span class="weather-app-temperature" id="temperature">°C</span>
+            <div class="icon">
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png" alt="" id="image" 
+              class="weather-app-icon" 
+              /> 
+            </div>
+              <div class="weather-app-temperature" id="temperature"></div>
+              <div class="weather-app-unit">°C</div>
             </div>
           </div>
         </div>
