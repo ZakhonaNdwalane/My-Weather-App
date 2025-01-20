@@ -1,4 +1,4 @@
-body {
+body { 
   background-color: #f9f7fe;
   font-family: "Roboto", sans-serif;
 }
@@ -18,7 +18,7 @@ a {
 
 header {
   border-bottom: 1px solid #f9f7fe;
-  padding: 0 0 30px 0;
+  padding-bottom: 30px;
 }
 
 .search-form-input {
@@ -38,6 +38,7 @@ header {
   margin-left: 5px;
   border-radius: 6px;
   color: white;
+  cursor: pointer;
 }
 
 main {
@@ -47,6 +48,7 @@ main {
 .weather-app-data {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .weather-app-city {
@@ -68,18 +70,68 @@ main {
 
 .weather-app-temperature-container {
   display: flex;
+  align-items: center;
 }
 
 .weather-app-icon {
   font-size: 88px;
   height: 88px;
+  width: 88px;
+}
 
+.weather-app-forecast {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: flex-start; /* Align items horizontally from the start */
+  gap: 15px; /* Add spacing between forecast items */
+  overflow-x: auto; /* Enable horizontal scrolling for overflow */
+  padding-bottom: 10px; /* Add some padding for better UX */
+  scrollbar-width: thin; /* Make scrollbar thinner for modern browsers */
+}
+
+.weather-app-forecast::-webkit-scrollbar {
+  height: 8px; /* Adjust the scrollbar height */
+}
+
+.weather-app-forecast::-webkit-scrollbar-thumb {
+  background-color: #885df1; /* Match the app's design */
+  border-radius: 4px;
+}
+
+.weather-app-forecast::-webkit-scrollbar-track {
+  background-color: #f9f7fe; /* Light background for the track */
+}
+
+.Weather-forecast-day {
+  flex: 0 0 auto; /* Prevent items from shrinking or stretching */
+  width: 100px; /* Fixed width for each forecast item */
+  text-align: center;
+}
+
+.Weather-forecast-date {
+  color: rgba(39, 33, 66, 0.4);
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.Weather-forecast-icon {
+  font-size: 48px;
+}
+
+.Weather-forecast-temperatures {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+  color: #f65282;
 }
 
 .weather-app-temperature {
   font-size: 88px;
   font-weight: bold;
   line-height: 88px;
+  margin: 0 10px;
 }
 
 .weather-app-unit {
@@ -89,7 +141,7 @@ main {
 
 footer {
   border-top: 1px solid #f9f7fe;
-  padding: 30px 0 0 0;
+  padding-top: 30px;
   text-align: center;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
