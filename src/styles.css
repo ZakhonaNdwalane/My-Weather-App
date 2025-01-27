@@ -65,7 +65,7 @@ main {
 }
 
 .weather-app-details strong {
-  color: #f65282;
+  color: #b60d40;
 }
 
 .weather-app-temperature-container {
@@ -125,7 +125,7 @@ main {
   justify-content: center;
   gap: 5px;
   margin-top: 10px;
-  color: #f65282;
+  color:#b60d40;;
 }
 
 .weather-app-temperature {
