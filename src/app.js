@@ -14,11 +14,13 @@ function displayWeather(response) {
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windspeedElement.innerHTML = `${response.data.wind.speed} km/h`;
-  timeElement.innerHTML = formatDay(date);
+  timeElement.innerHTML = formatCurrentTime(date); 
   iconElement.setAttribute("src", response.data.condition.icon_url);
+
+  getForecast(response.data.city); 
 }
 
-function formatDay(date) {
+function formatCurrentTime(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let days = [
@@ -37,6 +39,7 @@ function formatDay(date) {
 
   return `${day} ${hours}:${minutes}`;
 }
+
 function searchCity(city) {
   let apikey = "c4d9be47o0b370b37f28te5a42babf6c";
   const apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}`;
@@ -50,25 +53,45 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast(response) {
-  let days = ["Tues", "Wed", "Thu", "Fri", "Sat"];
-  let forecastHtml = "";
+function getForecast(city) {
+  let apikey = "c4d9be47o0b370b37f28te5a42babf6c";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}`;
+  axios.get(apiURL).then(displayForecast);
+}
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="weather-app-forecast">
-          <div class="Weather-forecast-day">
-            <div class="Weather-forecast-date">${day}</div>
-            <div class="Weather-forecast-icon">⛅️</div>
-            <div class="Weather-forecast-temperatures">
-              <div class="Weather-forecast-temperature">
-                <strong>17°C</strong>
-              </div>
-              <div class="Weather-forecast-temperature">12°C</div>
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecastHtml = "";
+  let currentDate = new Date().getDay(); 
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      
+      let forecastDay = (currentDate + index) % 7; 
+      forecastHtml += `
+        <div class="Weather-forecast-day">
+          <div class="Weather-forecast-date">${
+            ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"][forecastDay]
+          }</div>
+          <img src="${day.condition.icon_url}" class="Weather-forecast-icon" />
+          <div class="Weather-forecast-temperatures">
+            <div class="Weather-forecast-temperature">
+              <strong>${Math.round(day.temperature.maximum)}°</strong>
             </div>
-          </div>`;
+            <div class="Weather-forecast-temperature">${Math.round(
+              day.temperature.minimum
+            )}°</div>
+          </div>
+        </div>`;
+    }
   });
+
   let forecast = document.querySelector(".weather-app-forecast");
   forecast.innerHTML = forecastHtml;
 }
@@ -77,6 +100,4 @@ let searchForm = document.querySelector(".search-form");
 searchForm.addEventListener("submit", handleSearchSubmit);
 let searchInput = document.querySelector(".search-form-input");
 
-searchCity("New York");
-
-displayForecast();
+searchCity("New York"); 

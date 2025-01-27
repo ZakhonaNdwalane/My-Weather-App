@@ -1,14 +1,14 @@
-body { 
-  background-color: #f9f7fe;
+body {
+  background-color: #d3e3e7;
   font-family: "Roboto", sans-serif;
 }
 
 a {
-  color: #885df1;
+  color: #5426c9;
 }
 
 .weather-app {
-  background: white;
+  background: rgb(192, 192, 241);
   max-width: 600px;
   margin: 45px auto;
   box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
@@ -31,7 +31,7 @@ header {
 }
 
 .search-form-button {
-  background: #885df1;
+  background: #5b34bd;
   padding: 15px 30px;
   border: none;
   font-size: 12px;
@@ -59,7 +59,7 @@ main {
 
 .weather-app-details {
   font-size: 16px;
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(21, 21, 22, 0.4);
   line-height: 24px;
   font-weight: 500;
 }
@@ -81,42 +81,43 @@ main {
 
 .weather-app-forecast {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  justify-content: flex-start; /* Align items horizontally from the start */
-  gap: 15px; /* Add spacing between forecast items */
-  overflow-x: auto; /* Enable horizontal scrolling for overflow */
-  padding-bottom: 10px; /* Add some padding for better UX */
-  scrollbar-width: thin; /* Make scrollbar thinner for modern browsers */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 10px;
 }
 
 .weather-app-forecast::-webkit-scrollbar {
-  height: 8px; /* Adjust the scrollbar height */
+  height: 8px;
 }
 
 .weather-app-forecast::-webkit-scrollbar-thumb {
-  background-color: #885df1; /* Match the app's design */
+  background-color: #7a4deb;
   border-radius: 4px;
 }
 
 .weather-app-forecast::-webkit-scrollbar-track {
-  background-color: #f9f7fe; /* Light background for the track */
+  background-color: #ece8f5;
 }
 
 .Weather-forecast-day {
-  flex: 0 0 auto; /* Prevent items from shrinking or stretching */
-  width: 100px; /* Fixed width for each forecast item */
+  flex: 0 0 auto;
+  width: 100px;
   text-align: center;
 }
 
 .Weather-forecast-date {
   color: rgba(39, 33, 66, 0.4);
-  font-size: 16px;
+  font-size: 12px;
   line-height: 20px;
   margin-bottom: 10px;
 }
 
 .Weather-forecast-icon {
-  font-size: 48px;
+  height: 50px;
+  width: 50px;
+  display: block;
+  margin: 0 auto;
 }
 
 .Weather-forecast-temperatures {
